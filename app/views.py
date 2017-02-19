@@ -19,6 +19,26 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
+@app.route('/filelisting', methods=['POST','GET'])
+def getfiles():
+    a= listfiles()
+
+    return render_template('files.html', b=a )
+
+
+def listfiles():
+    if not session.get('logged_in'):
+        abort(401)
+
+    if request.method == 'GET':
+        rootdir = os.getcwd()
+        print rootdir
+        ufiles = []
+        for subdir, dirs, files in os.walk(rootdir + '/app/static/uploads'):
+            for file in files:
+                ufiles.append(file)
+                print os.path.join(subdir, file)
+        return ufiles
 
 @app.route('/about/')
 def about():

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block main %}
+<h1> This is the list of files that have been uploaded already</h1>
+<ol> 
+{%for file in b%}
+<li>{{file}}</li>
+</ol>
+{% endfor %}
+{% endblock %}
