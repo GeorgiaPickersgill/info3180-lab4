@@ -2,8 +2,12 @@
 {% block main %}
 <h1> This is the list of files that have been uploaded already</h1>
 <ol> 
-{%for file in b%}
-<li>{{file}}</li>
-</ol>
+{% for file in b %}
+	{% if file[-3:]== 'jpg' or file[-4:]== 'jpeg' %}
+		<img src={{ url_for('static',filename= "uploads/"+ file )}} height="200" width="200">
+		{% else %}
+			<li>{{file}}</li>
+	{% endif %}
 {% endfor %}
+</ol>
 {% endblock %}
